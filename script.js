@@ -16,14 +16,24 @@ const animals = [
 // ---------------------------------------------------------------------------
 // Task 1 — Animal names with .map()
 // ---------------------------------------------------------------------------
+const names = animals.map (function (animal) {
+	return animal.name
+})
 
+console.log(names)
 // ---------------------------------------------------------------------------
 // Task 2 — Log each animal with .forEach()
 // ---------------------------------------------------------------------------
+animals.forEach(function(animal) {
+	console.log(animal.name)
+})
 
 // ---------------------------------------------------------------------------
 // Task 3 — Log each animal again with for...of
 // ---------------------------------------------------------------------------
+for (const animal of animals) {
+	console.log(animal.name)
+}
 
 // ---------------------------------------------------------------------------
 // Task 4 — Adopted and available animals with .filter()
