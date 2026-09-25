@@ -17,39 +17,91 @@ const animals = [
 // Task 1 — Animal names with .map()
 // ---------------------------------------------------------------------------
 const names = animals.map (function (animal) {
-	return animal.name
-})
+	return animal.name;
+});
 
-console.log(names)
+console.log(names);
 // ---------------------------------------------------------------------------
 // Task 2 — Log each animal with .forEach()
 // ---------------------------------------------------------------------------
+
+// Logging names with .forEach
 animals.forEach(function(animal) {
-	console.log(animal.name)
-})
+	console.log(animal.name);
+});
 
 // ---------------------------------------------------------------------------
 // Task 3 — Log each animal again with for...of
 // ---------------------------------------------------------------------------
-for (const animal of animals) {
-	console.log(animal.name)
-}
 
+// Logging names with for...of
+for (const animal of animals) {
+	console.log(animal.name);
+};
 // ---------------------------------------------------------------------------
 // Task 4 — Adopted and available animals with .filter()
 // ---------------------------------------------------------------------------
+
+// Array of adopted animals
+const adopted = animals.filter(function (animal) {
+	return animal.adopted;
+})
+console.log(adopted);
+
+
+// Array of cats
+const cats = animals.filter(function (animal) {
+	if (animal.species === "cat") {
+		return animal.species;
+	}
+})
+console.log(cats);
+
 
 // ---------------------------------------------------------------------------
 // Task 5 — Available dogs with method chaining
 // ---------------------------------------------------------------------------
 
+// Array of avaliable dogs
+const availableDogs = animals.filter(function (animal) {
+	if (animal.species === "dog") {
+		return !animal.adopted;
+	}
+})
+console.log(availableDogs);
+
+// Array of adopted dogs
+const adoptedDogs = animals.filter(function (animal) {
+	if (animal.species === "dog") {
+		return animal.adopted;
+	}
+})
+console.log(adoptedDogs);
+
 // ---------------------------------------------------------------------------
 // Task 6 — Average age with .reduce()
 // ---------------------------------------------------------------------------
 
+// Array of ages
+const ages = animals.map(function (animal) {
+	return animal.age;
+});
+
+// Averaging age
+const avgAge = (ages.reduce(getSum, 0))/animals.length;
+
+// Sum function for .reduce
+function getSum (x, y) {
+	return x + y;
+}
+
+console.log(age);
+
 // ---------------------------------------------------------------------------
 // Task 7 — Write isCat, isAdopted, and getName
 // ---------------------------------------------------------------------------
+
+
 
 // ---------------------------------------------------------------------------
 // Task 8 — Adopted cats, using your own functions as callbacks
