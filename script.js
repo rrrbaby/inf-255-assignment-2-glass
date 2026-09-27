@@ -27,7 +27,7 @@ console.log(names);
 
 // Logging names with .forEach
 animals.forEach(function(animal) {
-	console.log(animal.name);
+	console.log("Name: " + animal.name + " Species: " + animal.species);
 });
 
 // ---------------------------------------------------------------------------
@@ -36,26 +36,38 @@ animals.forEach(function(animal) {
 
 // Logging names with for...of
 for (const animal of animals) {
-	console.log(animal.name);
+	console.log("Age: " + animal.age + " Adopted: " + animal.adopted);
 };
 // ---------------------------------------------------------------------------
 // Task 4 — Adopted and available animals with .filter()
 // ---------------------------------------------------------------------------
 
 // Array of adopted animals
-const adopted = animals.filter(function (animal) {
+
+const adoptedArray = animals.filter(function (animal) {
 	return animal.adopted;
 })
-console.log(adopted);
 
 
-// Array of cats
-const cats = animals.filter(function (animal) {
-	if (animal.species === "cat") {
-		return animal.species;
-	}
+const adoptedAnimals = adoptedArray.map (function (animal) {
+	return animal.name;
 })
-console.log(cats);
+
+console.log(adoptedAnimals);
+
+
+// Array of available animals
+
+const availableArray = animals.filter(function (animal) {
+	return !animal.adopted;
+})
+
+const availableAnimals = availableArray.map (function (animal) {
+	return animal.name
+	
+})
+
+console.log(availableAnimals);
 
 
 // ---------------------------------------------------------------------------
@@ -63,19 +75,29 @@ console.log(cats);
 // ---------------------------------------------------------------------------
 
 // Array of avaliable dogs
-const availableDogs = animals.filter(function (animal) {
+const availableDogsArray = animals.filter(function (animal) {
 	if (animal.species === "dog") {
 		return !animal.adopted;
 	}
 })
-console.log(availableDogs);
+ const availableDogs = availableDogsArray.map (function (animal) {
+	return animal.name	
+ })
+
+ console.log(availableDogs);
+ 
 
 // Array of adopted dogs
-const adoptedDogs = animals.filter(function (animal) {
+const adoptedDogsArray = animals.filter(function (animal) {
 	if (animal.species === "dog") {
 		return animal.adopted;
 	}
 })
+
+const adoptedDogs = adoptedDogsArray.map(function (animal) {
+	return animal.name
+})
+
 console.log(adoptedDogs);
 
 // ---------------------------------------------------------------------------
@@ -95,22 +117,76 @@ function getSum (x, y) {
 	return x + y;
 }
 
-console.log(age);
+console.log(avgAge);
 
 // ---------------------------------------------------------------------------
 // Task 7 — Write isCat, isAdopted, and getName
 // ---------------------------------------------------------------------------
 
+function isAdopted (animal) {
+	return animal.adopted
+};
 
+function isCat (animal) {
+	if (animal.species === "cat") {
+		return animal.species;
+	}
+}
+
+function getName(animal) {
+	return animal.name;
+}
 
 // ---------------------------------------------------------------------------
 // Task 8 — Adopted cats, using your own functions as callbacks
 // ---------------------------------------------------------------------------
 
+//Not sure if I can use multiple functions in one variable, tried and it didn't work.
+//Please let me know.
+const catsArray = animals.filter(isCat);
+
+const adoptedCatsArray = catsArray.filter(isAdopted);
+
+const adoptedCats = adoptedCatsArray.map (getName);
+
+console.log(adoptedCats);
+
+
 // ---------------------------------------------------------------------------
 // Task 9 — Write makeSpeciesChecker (a closure)
 // ---------------------------------------------------------------------------
 
+function makeSpeciesChecker(species) {
+	return function (animal) {
+		if (animal.species === species) {
+			return animal.species;
+		}
+	};
+};
+
 // ---------------------------------------------------------------------------
 // Task 10 — Build isDog and isRabbit, then log their names
 // ---------------------------------------------------------------------------
+
+//Create species checkers
+const isDog = makeSpeciesChecker("dog");
+
+const isRabbit = makeSpeciesChecker("rabbit");
+
+//Create dogs array and call names
+const dogsArray = animals.filter(isDog);
+
+const dogs = dogsArray.map(getName);
+
+console.log(dogs);
+
+//Create rabbits array and call names
+const rabbitsArray = animals.filter(isRabbit);
+
+const rabbits = rabbitsArray.map(getName);
+
+console.log(rabbits);
+
+
+
+
